@@ -1,0 +1,20 @@
+Have list of BC + Vi
+Have other, fixed params (wind speed, sight height, atmospherics, etc)
+
+Foreach (BC + Vi):
+    Foreach x in range(someMin, someMax):
+        Generate yardages with x as ZERO
+    Find ideal 0 yardage candidates (use good_zero function)
+    Find best candidate
+
+
+
+* ideal function possibilites:
+
+def good_zero(elevation, min_elevation, max_elevation, bullet_diam)->bool:
+    return elevation >= min_elevation and elevation + half-diameter-of-bullet <= max_elevation 
+
+range of good zeros = 
+    * zero is the first point at which the bullet passes line of sight
+    * we are adjusting sighting to change that point
+    the peak rises(elevations) that satisfy some constraint
