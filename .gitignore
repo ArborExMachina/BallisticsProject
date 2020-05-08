@@ -1,3 +1,6 @@
-.vscode
+.vscode/
+.vs/
 *.out
 /__pycache__
+GNU_Ballistics/.vs/
+*.sln

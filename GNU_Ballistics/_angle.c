@@ -1,3 +1,7 @@
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 // Specialty angular conversion functions
 double DegtoMOA(double deg){
 	return deg*60;

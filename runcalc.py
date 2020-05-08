@@ -7,7 +7,7 @@ from CalcResult import ResultTable
 from parse import Parser
 from goodzero import good_zero
 
-path = Path("a.out").resolve()
+path = Path("GNU_Ballistics/docalc.exe").resolve()
 
 # TODO: find min/max range & resolution in input
 #fields = ["BC", "V", "SH", "ANGLE", "ZERO", "WINDSPEED", "WINDANGLE"]
