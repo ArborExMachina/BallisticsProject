@@ -2,7 +2,7 @@
 #include "ballistics.h"
 
 enum Fields{
-	BC, V, SH, ANGLE, ZERO, WINDSPEED, WINDANGLE, RANGESTART, RANGEEND, RESOLUTION
+	BC, V, SH, ANGLE, WINDSPEED, WINDANGLE, ZERO, RANGESTART, RANGEEND, RESOLUTION
 };
 
 #define GetArg(arg) atof(argv[arg+1]) 
@@ -22,9 +22,9 @@ int main(int argc, char**argv){
 	double v = atof(argv[V+1]);
 	double sh = atof(argv[SH+1]);
 	double angle = atof(argv[ANGLE+1]);
-	double zero = atof(argv[ZERO+1]);
 	double windspeed = atof(argv[WINDSPEED+1]);
 	double windangle = atof(argv[WINDANGLE+1]);
+	double zero = atof(argv[ZERO+1]);
 	int rangeStart = atoi(argv[RANGESTART + 1]);
 	int rangeEnd = atoi(argv[RANGEEND + 1]);
 	int resolution = atoi(argv[RESOLUTION + 1]);
