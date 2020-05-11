@@ -2,10 +2,11 @@ from sys import argv
 from configparser import ConfigParser
 from subprocess import Popen, PIPE
 from pathlib import Path
+from matplotlib import pyplot
 
 from CalcResult import ResultTable
 from parse import Parser
-from goodzero import good_zero
+from analyze import good_zero, maximal
 
 path = Path("a.out").resolve()
 
@@ -37,7 +38,7 @@ ideal_max = float(config['ideal']['max'])
 yardage_range = [rangeStart, rangeEnd, resolution]
 zero_range = [zero_start, zero_end, zero_res]
 
-outputs = []
+outputs = {}
 
 table = Parser(input_file_name, 'Abbreviated')
 next(table) # skip the header
@@ -51,7 +52,7 @@ for row in table:
     range_args[1] += range_args[2]
 
     for vi in range(*range_args):
-        calc_group = []
+        calc_group = {}
         for zero in range(zero_start, zero_end+zero_res, zero_res):
             count += 1
             print(count)
@@ -62,12 +63,10 @@ for row in table:
             rows = [tuple(float(v) for v in line.split(',')) for line in output.decode("utf-8").split("\n")[1:] ]
 
             result = ResultTable([bc, vi, zero, argv[2]], rows)
-            calc_group.append(result)
+            calc_group[zero] = result
         
-        maximal = max([ (table.params, table.find_maximal_peak(ideal_max)) for table in calc_group],
-                key=lambda row: row[1].range if row[1] != None else -99999999999999
-            )
-        outputs.append(maximal)
+        
+        outputs[(bc, vi)] = calc_group
 
 
 print("Calculations done")
@@ -79,5 +78,17 @@ print("Calculations done")
 #     print("\n")
 
 
-for result in outputs:
-    print(result[0], result[1].tuple() if result[1] != None else "\b, no results")
+for key,calc_group in outputs.items():
+    m = maximal(calc_group, ideal_max)
+    print(m[0], m[1].tuple() if m[1] != None else "\b, no results")
+    table = calc_group[m[0][2]]
+    pyplot.plot([row.tuple()[0] for row in table.rows], [row.tuple()[1] for row in table.rows])
+    pyplot.axvline(x=m[1].range)
+    pyplot.show()
+
+# user = ""
+# while user != 'q':
+    
+#     result = outputs[com[0]][com[1]]
+#     m = maximal()
+#     print(result[0], result[1].tuple() if result[1] != None else "\b, no results")

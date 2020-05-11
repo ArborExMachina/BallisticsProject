@@ -38,7 +38,7 @@ int main(int argc, char**argv){
 	// then we can just leave this commented out.
 //  DragCoefficient,  Altitude,  Barometer,  Temperature, RelativeHumidity);
 	// TODO: paramatize
-	bc=AtmCorrect(bc, 4500, 29.89, 59, 0.0078);
+	//bc=AtmCorrect(bc, 4500, 29.89, 59, 0.0078);
 	
 	
 	// First find the angle of the bore relative to the sighting system.
