@@ -31,6 +31,9 @@ class ResultTable:
     def add_row(self, _range, path, moa, time, windage, windage_moa, velocity, filter=None):
         self.rows.append(ResultRow(_range, path, moa, time, windage, windage_moa, velocity))
     
+
+    # Finds the peak value, discards if too high. Returns the row containing the furthest distance
+    # whose peak matches the peak value.
     def find_maximal_peak(self, acceptable_threshold):
         peak = max(self.rows, key= lambda row: row.path)
         if peak.path > acceptable_threshold:
