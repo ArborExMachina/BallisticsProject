@@ -4,3 +4,4 @@
 *.xlsx
 *.db
 .~lock*
+*.pyc
